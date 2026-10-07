@@ -86,6 +86,9 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: ${{ needs.build.outputs.pkg-id }}/*
+          # 幂等:该 tag 已存在 Release 时更新它,而不是报 422 already_exists
+          # (重新运行工作流、或 Release 已被手工创建时都会遇到)
+          allowUpdates: true
 
   publish:
     name: Publish to a registry fork
