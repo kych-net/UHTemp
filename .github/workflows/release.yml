@@ -100,7 +100,9 @@ jobs:
           repository: ${{ env.REGISTRY_REPO }}
           token: ${{ secrets.REGISTRY_TOKEN }}
           path: package-registry
-          sparse-checkout: ${{ env.PATH_PREFIX }}/${{ needs.build.outputs.pkg-name }}/${{ needs.build.outputs.pkg-version }}
+          # 只检出包目录(而非待发布的 <version> 目录):新版本目录在 registry 中尚不存在,
+          # 若把 cone 定到它,新文件会被稀疏规则忽略导致 "nothing to commit"。
+          sparse-checkout: ${{ env.PATH_PREFIX }}/${{ needs.build.outputs.pkg-name }}
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
