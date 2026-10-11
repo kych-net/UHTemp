@@ -22,8 +22,8 @@
 
 // 页脚内容生成器 / Footer content generator
 // 是否为网页编译(--input web=true)/ Whether compiling for web output
-#let is_web() = "web" in sys.inputs and sys.inputs.web == "true"
-#let is-web-target() = is_web()
+#let 网页编译() = "web" in sys.inputs and sys.inputs.web == "true"
+#let 网页编译目标() = 网页编译()
 
 // 嵌套缩进:按标题层级把正文递归包装为逐级左缩进的块,
 // 实现"N 级标题及其下内容缩进 N-1 级"(参考 TwilightBook / 论坛方案)。
@@ -279,7 +279,7 @@
   } else {
    // 普通模式:渲染内联文本(不换行)。labels 由调用方在想被引用处显式添加。
    // / Normal mode: render inline text (no line break).
-   if is_web() {
+   if 网页编译() {
     html.elem("span", attrs: (class: "uh-element",))[#term]
    } else if f != none {
     box[
@@ -317,7 +317,7 @@
   // a hover popup via <span title="未定义">; on PDF just render the term.
   let 已定义 = query(label(id-str)).len() > 0
   let is-html = "html" in sys.inputs and sys.inputs.html == "true"
-  if 已定义 and is_web() {
+  if 已定义 and 网页编译() {
    // 网页模式:链接 + 深红/楷体样式 class(与 PDF 视觉一致)
    link(label(id-str), html.elem("span", attrs: (class: "uh-element",))[#term])
   } else if 已定义 {
@@ -332,7 +332,7 @@
      #term
     ]
    }
-  } else if is-html or is_web() {
+  } else if is-html or 网页编译() {
    // 未定义网页分支:class 应用特殊格式样式,title 提供悬停"未定义"提示
    html.elem("span", attrs: (class: "uh-element", title: "未定义",))[#term]
   } else {
@@ -365,7 +365,7 @@
 #let 评论(body) = {
  if "隐藏评论" in sys.inputs and sys.inputs.隐藏评论 == "true" {
   []
- } else if is_web() {
+ } else if 网页编译() {
   // 网页:仿 wikidot "行评论浮泡" — 正文一个带角标的小触发点,
   // 悬停/聚焦时在旁边弹出浮泡面板显示评论内容。
   // / Web: mimics a wikidot "line-comment bubble" — a small inline
@@ -412,7 +412,7 @@
    }
    let 登记 = metadata((键: "uh-todo", 序号: n, 内容: body, 页面: here().page()))
    // metadata 需进入文档流才可被 query 定位(不可见)
-   if is_web() {
+   if 网页编译() {
     [
      #登记
      #html.elem("span", attrs: (class: "uh-todo", id: 锚,))[
@@ -444,7 +444,7 @@
      let (k, it) = kv
      let n = it.value.序号
      let 锚 = "todo-" + str(n)
-     let 位置 = if is_web() {
+     let 位置 = if 网页编译() {
       html.elem("a", attrs: (href: "#" + 锚,))[跳转 ↗]
      } else {
       link(label(锚))[
