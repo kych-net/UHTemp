@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - README 与模板脚手架中的 `@preview/underhell` 版本引用更新至 `1.1.1`。
+- 待办相关 API 改用中文命名:`TODO` → `待办`、`TODO表格` → `待办表格`,编译参数 `隐藏TODO` → `隐藏待办`。
 
 ## [1.1.0] - 2026-10-23
 

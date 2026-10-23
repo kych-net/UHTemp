@@ -389,14 +389,14 @@
 // 设置当前元素系统 / Set the current element system
 #let 设置元素系统(name) = 元素系统-state.update(name)
 
-// 待办:以标题字体、醒目橙色标注待办事项;编译时传 `--input 隐藏TODO=true`
-// 可整体隐藏。每次使用会登记一页(位置)与该 TODO 内容,
-// 供 `#TODO表格` 汇总成「ID / 位置 / TODO」清单。
-// / TODO: mark pending items in the header font, highlighted orange;
-// pass `--input 隐藏TODO=true` at compile time to hide them entirely.
-// Each use records its location and content for `#TODO表格`.
-#let TODO(body) = {
- if "隐藏TODO" in sys.inputs and sys.inputs.隐藏TODO == "true" {
+// 待办:以标题字体、醒目橙色标注待办事项;编译时传 `--input 隐藏待办=true`
+// 可整体隐藏。每次使用会登记一页(位置)与该待办内容,
+// 供 `#待办表格` 汇总成「ID / 位置 / 内容」清单。
+// / todo: mark pending items in the header font, highlighted orange;
+// pass `--input 隐藏待办=true` at compile time to hide them entirely.
+// Each use records its location and content for `#待办表格`.
+#let 待办(body) = {
+ if "隐藏待办" in sys.inputs and sys.inputs.隐藏待办 == "true" {
   []
  } else {
   context {
@@ -426,20 +426,20 @@
  }
 }
 
-// TODO表格:直接收集正文里全部 #TODO(登记 metadata),渲染
-// 编号/位置/内容 三列表格;位置列为跳转到该 TODO 正文的链接。
-// / TODO table: collects every #TODO registered in the body (a locatable
+// 待办表格:直接收集正文里全部 #待办(登记 metadata),渲染
+// 编号/位置/内容 三列表格;位置列为跳转到该待办正文的链接。
+// / todo table: collects every #待办 registered in the body (a locatable
 // metadata element per call) and renders an ID/location/content table;
-// the location column links back to the TODO's position.
-#let TODO表格() = {
+// the location column links back to the todo's position.
+#let 待办表格() = {
  context {
   let items = query(metadata).filter(m => m.value.键 == "uh-todo")
   if items.len() == 0 {
-   [当前无 #TODO。]
+   [当前无 #待办。]
   } else {
    table(
     columns: (auto, auto, 1fr),
-    table.header([编号], [位置], [TODO 内容]),
+    table.header([编号], [位置], [内容]),
     ..items.enumerate().map(kv => {
      let (k, it) = kv
      let n = it.value.序号
