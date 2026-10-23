@@ -322,7 +322,7 @@ All six heading levels are styled differently:
 | `===` 三级 L3 | 小型大写、深红、1.3em · small caps, dark red, 1.3em |
 | `====` 四级 L4 | 深红、1.15em、黄色左色条 · dark red, 1.15em, yellow left bar |
 | `=====` 五级 L5 | 左侧圆点(垂直居中)+ 深红斜体 · left dot (vertically centered) + dark-red italic |
-| `======` 六级 L6 | 深红、0.95em、前置 `—` 符号 · dark red, 0.95em, preceding `—` |
+| `======` 六级 L6 | 深红、0.95em · dark red, 0.95em |
 
 打印模式下所有彩色装饰(下划线、色条、圆点)自动去除。
 All colored decorations (underlines, bars, dots) are removed in print mode automatically.

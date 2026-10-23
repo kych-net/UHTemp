@@ -705,10 +705,10 @@
   )
  ]
 
- // 六级标题样式:深红、小号、前置 — 符号 / Level-6 heading: darkred, small, "—" prefix
+ // 六级标题样式:深红、小号 / Level-6 heading: darkred, small
  show heading.where(level: 6): it => block[
   #text(..header-font-args, size: 0.95em, fill: heading-fill, weight: "regular")[
-   — #it
+   #it
   ]
  ]
 
@@ -1521,6 +1521,46 @@ All original material in this work is copyright by the respective authors and pu
     ]
    ]
   }
+ }
+}
+
+// ------------------------------------------------------------
+// 索引:同目录 .typ 文件链接列表 / Sibling .typ file index
+// Typst 编译期无法枚举目录,故清单由构建脚本经 --input 注入为 JSON:
+//   --input 索引={"目录":"<相对内容根>","文件":["名1","名2"]}
+// 也可显式传 `文件:` 覆盖清单、`目录:` 覆盖链接前缀。
+// 网页模式输出可点击链接;PDF/普通模式只列文件名(跨文件无锚点可链)。
+// / Typst cannot enumerate directories at compile time, so the build script
+// injects the list as JSON through --input. `文件:`/`目录:` override it.
+// ------------------------------------------------------------
+#let 索引(标题: none, 目录: none, 文件: none, 排除: ()) = {
+ let web = "web" in sys.inputs and sys.inputs.web == "true"
+ let raw = sys.inputs.at("索引", default: "")
+ let data = if raw == "" { (:) } else { json(bytes(raw)) }
+ let dir = if 目录 != none { 目录 } else { data.at("目录", default: "") }
+ let names = if 文件 != none {
+  文件
+ } else {
+  data.at("文件", default: ())
+ }
+ let names = names.filter(n => n != "" and n not in 排除)
+ let dir-str = dir.trim("/")
+ let base = if dir-str == "" { "/" } else { "/" + dir-str + "/" }
+ // 目录页 index.typ 的 URL 是所在目录本身 / A directory page maps to its own URL
+ let href = n => if n == "index" { base } else { base + n + "/" }
+ let body = if web {
+  html.elem("ul", attrs: (class: "uh-index",))[
+   #for n in names [
+    #html.elem("li")[#html.elem("a", attrs: (href: href(n),))[#n]]
+   ]
+  ]
+ } else {
+  list(..names)
+ }
+ if 标题 != none {
+  block(heading(level: 6, 标题) + body)
+ } else {
+  body
  }
 }
 
