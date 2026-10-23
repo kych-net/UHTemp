@@ -1,21 +1,26 @@
 # 地狱之下模板 · UnderHell Template
 
-用于架空世界内容创作的 [Typst](https://typst.app) 模板——冒险模组、世界设定文档、角色卡片。
-A [Typst](https://typst.app) template for worldbuilding — adventure modules, setting documents, character sheets.
+> 用于架空世界内容创作的 [Typst](https://typst.app) 模板——冒险模组、世界设定文档、角色卡片。
+> A [Typst](https://typst.app) template for worldbuilding — adventure modules, setting documents, character sheets.
 
-**`@preview/underhell:1.0.0`** · Typst 0.15+ · MIT · [GitHub](https://github.com/kych-net/UnderHell) · [GitCode](https://gitcode.com/CrossDark/UnderHell)
+`@preview/underhell:1.1.1` · Typst 0.15+ · MIT
+
+[本仓库](https://github.com/kych-net/UHTemp) · [Typst Universe](https://typst.app/universe/package/underhell) · [UHEg 项目模板](https://github.com/kych-net/UHEg) · [GitCode 镜像](https://gitcode.com/CrossDark/UnderHell)
 
 ---
 
-> **关于本仓库 / About this repo**
->
-> 本仓库是 [地狱之下 (UnderHell)](https://github.com/kych-net/UnderHell) 项目的文档模板子模块,在此同步维护并按需调整。
-> This is the documentation-template submodule of the [UnderHell](https://github.com/kych-net/UnderHell) worldbuilding project.
->
-> **出处与版权 / Origin & license**
->
-> 本模板源自 [coljac/typst-dnd5e](https://github.com/coljac/typst-dnd5e)(即 Typst Universe 中的 `dragonling` 包),作者 Colin Jacobs,基于 MIT 协议发布。感谢原作者的工作。
-> Derived from [coljac/typst-dnd5e](https://github.com/coljac/typst-dnd5e) (the `dragonling` package on Typst Universe) by Colin Jacobs, MIT. Thanks to the original author.
+## 关于本仓库
+
+本仓库是 [地狱之下 (UnderHell)](https://github.com/kych-net/UnderHell) 项目的文档模板子模块,在此同步维护并按需调整。
+This is the documentation-template submodule of the [UnderHell](https://github.com/kych-net/UnderHell) worldbuilding project.
+
+本模板源自 [coljac/typst-dnd5e](https://github.com/coljac/typst-dnd5e)(即 Typst Universe 中的 `dragonling` 包),作者 Colin Jacobs,基于 MIT 协议发布。感谢原作者的工作。
+Derived from [coljac/typst-dnd5e](https://github.com/coljac/typst-dnd5e) (the `dragonling` package on Typst Universe) by Colin Jacobs, MIT. Thanks to the original author.
+
+### 配套项目模板 · Companion project template
+
+[UHEg](https://github.com/kych-net/UHEg) 是基于本模板整理的项目模板仓库,用于快速创建可直接编译的设定集 / 冒险 / 规则文档项目,已内置分章正文、元素系统数据、网页构建工作流与 AI 写作规范。
+[UHEg](https://github.com/kych-net/UHEg) is a ready-to-build project scaffold based on this template — chapters, element-system data, a web build workflow, and AI writing conventions included.
 
 ## 安装 · Installation
 
@@ -23,7 +28,7 @@ A [Typst](https://typst.app) template for worldbuilding — adventure modules, s
 Published on Typst Universe — just import it:
 
 ```typst
-#import "@preview/underhell:1.0.0": *
+#import "@preview/underhell:1.1.1": *
 ```
 
 _地狱之下_ 项目自身经 `配置.typ` 再导出(`#import "…/配置.typ": *`),不直接引模板。
@@ -35,10 +40,11 @@ This package targets Typst 0.15+.
 ## 用模板起项目 · Start from the template
 
 本包同时是模板(见 `typst.toml` 的 `[template]`)。`typst init` 会生成一个可直接编译的示例项目:根下 `配置.typ`(站点配置)、`Makefile` 与 `README.md`,`内容/` 下是分章的正文,`附件/` 下是元素系统数据,`脚本/` 下是单页入口与网页后处理。`内容/关于.typ` 用 `cmarker`(配 `mitex` 渲染公式)把 `README.md` 渲染进正文,演示导入 Markdown——图片经 `scope` 变成带题注的图表。`make web` 出多页站点:各页共用一份 `/assets/underhell.css`,定义在别页的元素自动连成跳转链接。
+
 This package doubles as a template: `typst init` scaffolds a ready-to-build project — `配置.typ`, `Makefile` and `README.md` at the root, chapters under `内容/`, element-system data under `附件/`, and a single-page entry plus web post-processing under `脚本/`. `内容/关于.typ` renders `README.md` via `cmarker` (with `mitex` for math), demonstrating Markdown import — images go through `scope` into captioned figures. `make web` builds a multi-page site: every page shares one `/assets/underhell.css`, and elements defined on another page become links.
 
 ```sh
-typst init @preview/underhell:1.0.0 我的设定集
+typst init @preview/underhell:1.1.1 我的设定集
 cd 我的设定集
 make pdf     # 内容/ 下每个 .typ → 一份 PDF(dist/) ; make web → HTML(内容/ 里已有的 .html 原样保留) ; make watch → 监听自动重编
 ```
@@ -56,7 +62,7 @@ The “Create project in app” button on the Universe page does the same.
 ## 快速开始 · Quick start
 
 ```typst
-#import "@preview/underhell:1.0.0": *
+#import "@preview/underhell:1.1.1": *
 
 #show: 地狱之下模板.with(
   title: "我的设定集",
@@ -76,80 +82,50 @@ The “Create project in app” button on the Universe page does the same.
 `地狱之下模板` 会为你初始化整篇文档。常用参数:
 The `地狱之下模板` template initializes the document for you. Common options:
 
-- `title` —— 文档标题,以文字形式渲染;封面图已含标题时可省略。
+**文档参数 · Document options**
 
-  Document title rendered as text. Omit if your cover image already shows the title.
+- **`title`** —— 文档标题,以文字形式渲染;封面图已含标题时可省略。
+  *Document title rendered as text. Omit if your cover image already shows the title.*
+- **`subtitle`** —— 封面底部的副标题/标语。
+  *Subtitle or tagline at the bottom of the cover.*
+- **`author`** —— 你的名字。
+  *Your name.*
+- **`cover`** —— 用于封面的 `image`。
+  *An `image` used for the cover.*
+- **`fancy-author`** —— 把作者名放进红色火焰装饰中。
+  *Puts the author name inside a red flame flourish.*
+- **`logo`** —— 提供 `image`,在首页放置 logo。
+  *An `image` to place a logo on the first page.*
+- **`font-size`** —— 默认 `12pt`。
+  *Default `12pt`.*
+- **`paper`** —— 默认(合理地)为 `a4`;美国用户可改用 `us-letter`。
+  *Defaults (sensibly) to `a4`; US users may want `us-letter`.*
+- **`add-title`** —— 是否在首页打印标题。若自制了封面图,可设为 `false`。
+  *Whether to print the title on the first page. Set `false` if you made your own cover image.*
+- **`bg`** —— 内容页背景:`"default"` 为羊皮纸(默认),`none` 为适合打印的白色背景,或传 `image(...)` 自定义。
+  *Content-page background: `"default"` (parchment), `none` for print-friendly white, or an `image(...)`.*
+- **`lang`** —— 用于 `属性框`、`人物框` 中本地化标签(Armor Class、Description 等)的双字母语言代码,默认 `"en"`。内置 `"it"`;可参照 `languages/en.toml` 新增 `languages/<code>.toml`。语言文件的 `[fonts]` 段配置字体:`body`(正文)、`header`(标题)、`italic`(斜体)。
+  *Two-letter language code for localized labels in `属性框` / `人物框`, default `"en"`. Ships with `"it"`; add your own as `languages/<code>.toml`. The `[fonts]` section configures `body`, `header`, `italic`.*
+- **`元素系统`** —— 元素系统名称(见下文)。默认取编译时 `--input 元素系统=xxx`,缺省 `"普通"`;显式传入可覆盖。
+  *Element-system name (see below). Defaults to the build-time `--input 元素系统=xxx`, falling back to `"普通"`.*
+- **`元素系统数据`** —— 元素系统数据文件的 `csv()` 读取结果(见下文)。
+  *The `csv()` result of the element-system data file (see below).*
 
-- `subtitle` —— 封面底部的副标题/标语。
-
-  Subtitle or tagline at the bottom of the cover.
-
-- `author` —— 你的名字。
-
-  Your name.
-
-- `cover` —— 用于封面的 `image`。
-
-  An `image` used for the cover.
-
-- `fancy-author` —— 把作者名放进红色火焰装饰中。
-
-  Puts the author name inside a red flame flourish.
-
-- `logo` —— 提供 `image`,在首页放置 logo。
-
-  An `image` to place a logo on the first page.
-
-- `font-size` —— 默认 `12pt`。
-
-  Default `12pt`.
-
-- `paper` —— 默认(合理地)为 `a4`;美国用户可改用 `us-letter`。
-
-  Defaults (sensibly) to `a4`; US users may want `us-letter`.
-
-- `add-title` —— 是否在首页打印标题。若自制了封面图,可设为 `false`。
-
-  Whether to print the title on the first page. Set `false` if you made your own cover image.
-
-- `bg` —— 内容页背景:`"default"` 为羊皮纸(默认),`none` 为适合打印的白色背景,或传 `image(...)` 自定义。
-
-  Content-page background: `"default"` (parchment), `none` for print-friendly white, or an `image(...)`.
-
-- `lang` —— 用于 `属性框`、`人物框` 中本地化标签(Armor Class、Description 等)的双字母语言代码,默认 `"en"`。内置 `"it"`;可参照 `languages/en.toml` 新增 `languages/<code>.toml`。语言文件的 `[fonts]` 段配置字体:`body`(正文)、`header`(标题)、`italic`(斜体)。
-
-  Two-letter language code for localized labels in `属性框` / `人物框`, default `"en"`. Ships with `"it"`; add your own as `languages/<code>.toml`. The `[fonts]` section configures `body`, `header`, `italic`.
-
-- `元素系统` —— 元素系统名称(见下文)。默认取编译时 `--input 元素系统=xxx`,缺省 `"普通"`;显式传入可覆盖。
-
-  Element-system name (see below). Defaults to the build-time `--input 元素系统=xxx`, falling back to `"普通"`.
-
-- `元素系统数据` —— 元素系统数据文件的 `csv()` 读取结果(见下文)。
-
-  The `csv()` result of the element-system data file (see below).
+**站点参数 · Site options**
 
 以下参数用于站点定制。其中 `品牌名` 与 `主题` 的 `标题色`/`强调色` 同时影响 PDF;默认值即 _地狱之下_ 项目自身的值,第三方使用时覆盖即可。
 These options customize the site. `品牌名` and the theme's `标题色`/`强调色` also affect the PDF. Defaults are the _UnderHell_ project's own values — overwrite them for your site.
 
-- `品牌名` —— `品牌` 函数打印的名字,默认 `"地狱之下"`。
-
-  Name printed by the `品牌` helper. Default `"地狱之下"`.
-
-- `页脚链接` —— 网页右上角导航链接数组,每项 `(标签: "PDF", 网址: "...", 提示: "...")`;`提示` 省略则用标签。
-
-  Nav links for the web page: `(标签:, 网址:, 提示:)`; `提示` falls back to `标签`.
-
-- `备案号` / `备案链接` —— 网页底部备案号与链接;`备案号` 设为 `""` 则不渲染页脚。
-
-  ICP filing number and link at the page bottom; set `备案号` to `""` to omit the footer.
-
-- `主题` —— 调色字典,可含 `标题色`、`强调色`(PDF 与网页共用)与 `纸色`、`墨色`(仅网页)。值为 Typst 颜色或 CSS 颜色字符串。
-
-  Theme dict with `标题色`, `强调色` (PDF + web) and `纸色`, `墨色` (web only). Values are Typst colors or CSS color strings.
-
-- `阅读器` —— 网页阅读器面板配置,见下文「网页输出」。
-
-  Web reader-panel config, see “Web output” below.
+- **`品牌名`** —— `品牌` 函数打印的名字,默认 `"地狱之下"`。
+  *Name printed by the `品牌` helper. Default `"地狱之下"`.*
+- **`页脚链接`** —— 网页右上角导航链接数组,每项 `(标签: "PDF", 网址: "...", 提示: "...")`;`提示` 省略则用标签。
+  *Nav links for the web page: `(标签:, 网址:, 提示:)`; `提示` falls back to `标签`.*
+- **`备案号` / `备案链接`** —— 网页底部备案号与链接;`备案号` 设为 `""` 则不渲染页脚。
+  *ICP filing number and link at the page bottom; set `备案号` to `""` to omit the footer.*
+- **`主题`** —— 调色字典,可含 `标题色`、`强调色`(PDF 与网页共用)与 `纸色`、`墨色`(仅网页)。值为 Typst 颜色或 CSS 颜色字符串。
+  *Theme dict with `标题色`, `强调色` (PDF + web) and `纸色`, `墨色` (web only). Values are Typst colors or CSS color strings.*
+- **`阅读器`** —— 网页阅读器面板配置,见下文「网页输出」。
+  *Web reader-panel config, see “Web output” below.*
 
 ```typst
 #show: 地狱之下模板.with(
@@ -169,35 +145,35 @@ Almost everything else is plain Typst. The template also provides:
 
 ### 元素 · Elements
 
-`元素(id, font: none)` —— 返回当前元素系统下的名词文本,**渲染为深红色**,默认使用标题字体(段宁毛笔小楷),可用 `font:` 覆盖。正文中不可用 `[` `]` 包裹。若该元素在文档中已有定义标题,自动变为指向该标题的链接;未定义时 PDF 编译给出 warning,HTML 输出(`--features html --input html=true`)渲染悬停"未定义"弹窗。
+**`元素(id, font: none)`** —— 返回当前元素系统下的名词文本,**渲染为深红色**,默认使用标题字体(段宁毛笔小楷),可用 `font:` 覆盖。正文中不可用 `[` `]` 包裹。若该元素在文档中已有定义标题,自动变为指向该标题的链接;未定义时 PDF 编译给出 warning,HTML 输出(`--features html --input html=true`)渲染悬停"未定义"弹窗。
 
-Returns the term for `id` under the current element system, **in dark red**, using the heading font by default (overridable via `font:`). Must not be wrapped in `[` `]` in running text. Links to the element's heading when one exists; otherwise warns in PDF and shows a hover "undefined" tooltip in HTML.
+*Returns the term for `id` under the current element system, **in dark red**, using the heading font by default (overridable via `font:`). Must not be wrapped in `[` `]` in running text. Links to the element's heading when one exists; otherwise warns in PDF and shows a hover "undefined" tooltip in HTML.*
 
-`设定元素(id, font: none, level: none)` —— 普通模式返回深红文本(同 `元素`,但不生成链接)。**传入 `level` 时进入"标题+锚点"模式**,生成带 `<名>` 标签的编号标题,可用 `@名` 交叉引用。文档中的章节标题即用此形式。
+**`设定元素(id, font: none, level: none)`** —— 普通模式返回深红文本(同 `元素`,但不生成链接)。**传入 `level` 时进入"标题+锚点"模式**,生成带 `<名>` 标签的编号标题,可用 `@名` 交叉引用。文档中的章节标题即用此形式。
 
-In normal mode returns dark-red text (like `元素`, but no link). **Passing `level` switches to “heading + anchor” mode**, producing a numbered heading labeled `<名>` and referenceable via `@名`. Section titles use this form.
+*In normal mode returns dark-red text (like `元素`, but no link). **Passing `level` switches to “heading + anchor” mode**, producing a numbered heading labeled `<名>` and referenceable via `@名`. Section titles use this form.*
 
-`评论(body)` —— 以标题字体、**灰色**显示注释(默认无删除线);编译时传 `--input 隐藏评论=true` 可整体隐藏。
+**`评论(body)`** —— 以标题字体、**灰色**显示注释(默认无删除线);编译时传 `--input 隐藏评论=true` 可整体隐藏。
 
-Shows a comment in the heading font, **in gray**. Pass `--input 隐藏评论=true` to hide all.
+*Shows a comment in the heading font, **in gray**. Pass `--input 隐藏评论=true` to hide all.*
 
-`品牌` —— 以小型大写字母打印品牌名(取自 `品牌名` 参数)。
+**`品牌`** —— 以小型大写字母打印品牌名(取自 `品牌名` 参数)。
 
-Prints the brand name (from `品牌名`) in small caps.
+*Prints the brand name (from `品牌名`) in small caps.*
 
 ### 版面 · Layout
 
-`表格(name, columns: (1fr, 4fr), breakable: false, ..contents)` —— 常规格式表格。默认 2 列、比例 1:4;`breakable` 为 `true` 时可跨页拆分。
+**`表格(name, columns: (1fr, 4fr), breakable: false, ..contents)`** —— 常规格式表格。默认 2 列、比例 1:4;`breakable` 为 `true` 时可跨页拆分。
 
-A regular formatted table. Defaults to 2 columns at 1:4; set `breakable` to `true` to split across pages.
+*A regular formatted table. Defaults to 2 columns at 1:4; set `breakable` to `true` to split across pages.*
 
-`提示框(title, contents)` —— 带彩色背景的方框,可选标题以小型大写显示。
+**`提示框(title, contents)`** —— 带彩色背景的方框,可选标题以小型大写显示。
 
-A colored-background box, with an optional small-caps title.
+*A colored-background box, with an optional small-caps title.*
 
-`属性框(stats)` —— 接受如下字典。`skillblock` 与 `traits` 可含任意键。traits 之后,若存在 `Actions`、`Reactions`、`Limited Usage`、`Equipment` 或 `Legendary Actions`,将依次显示。
+**`属性框(stats)`** —— 接受如下字典。`skillblock` 与 `traits` 可含任意键。traits 之后,若存在 `Actions`、`Reactions`、`Limited Usage`、`Equipment` 或 `Legendary Actions`,将依次显示。
 
-Takes a dictionary in the format below. `skillblock` and `traits` may hold arbitrary keys. After traits, `Actions` / `Reactions` / `Limited Usage` / `Equipment` / `Legendary Actions` are shown in turn when present.
+*Takes a dictionary in the format below. `skillblock` and `traits` may hold arbitrary keys. After traits, `Actions` / `Reactions` / `Limited Usage` / `Equipment` / `Legendary Actions` are shown in turn when present.*
 
 ```typst
 #属性框((
@@ -223,9 +199,9 @@ Takes a dictionary in the format below. `skillblock` and `traits` may hold arbit
 ))
 ```
 
-`人物框(npc)` —— 非玩家角色卡片。除 `name` 外所有字段可选,省略即跳过对应部分;属性使用与 `属性框` 相同的自动修正值表。
+**`人物框(npc)`** —— 非玩家角色卡片。除 `name` 外所有字段可选,省略即跳过对应部分;属性使用与 `属性框` 相同的自动修正值表。
 
-A non-player-character card. All fields except `name` are optional; stats use the same auto-calculated modifiers as `属性框`.
+*A non-player-character card. All fields except `name` are optional; stats use the same auto-calculated modifiers as `属性框`.*
 
 ```typst
 #人物框((
@@ -243,9 +219,9 @@ A non-player-character card. All fields except `name` are optional; stats use th
 ))
 ```
 
-`法术` —— 接受如下字典,所有属性均可选。
+**`法术`** —— 接受如下字典,所有属性均可选。
 
-Takes a dictionary; all fields are optional:
+*Takes a dictionary; all fields are optional:*
 
 ```typst
 #法术((
@@ -263,17 +239,17 @@ Takes a dictionary; all fields are optional:
 
 ### 页面元素 · Page elements
 
-`顶部图` / `底部图` —— 把图片插入页面顶部/底部,横跨两栏,并抑制该页页脚。
+**`顶部图` / `底部图`** —— 把图片插入页面顶部/底部,横跨两栏,并抑制该页页脚。
 
-`顶部图` / `底部图` place an image at the top/bottom of the page, spanning both columns, and suppress the page footer.
+*`顶部图` / `底部图` place an image at the top/bottom of the page, spanning both columns, and suppress the page footer.*
 
 ```typst
 #底部图(image("swordtorn.png", width: 140%))
 ```
 
-`附录(title: "附录", numbering-fmt: "A.1.", ..body)` —— 在文末生成附录章节,自动把标题编号切换为字母格式(附录 A,子标题 A.1、A.1.1……)并重置计数器,避免与正文编号冲突。
+**`附录(title: "附录", numbering-fmt: "A.1.", ..body)`** —— 在文末生成附录章节,自动把标题编号切换为字母格式(附录 A,子标题 A.1、A.1.1……)并重置计数器,避免与正文编号冲突。
 
-Generates an appendix at the end, switching heading numbering to letters (Appendix A, A.1, A.1.1 …) and resetting counters to avoid clashing with the body.
+*Generates an appendix at the end, switching heading numbering to letters (Appendix A, A.1, A.1.1 …) and resetting counters to avoid clashing with the body.*
 
 ```typst
 #附录[
@@ -287,17 +263,17 @@ Generates an appendix at the end, switching heading numbering to letters (Append
 ]
 ```
 
-`导入(路径, 偏移: 1)` —— 用 `#include` 引入另一个 `.typ` 文件,并整体增加其标题层级(默认 +1)。被引入文件自行 `#import` 所需函数,本函数不注入作用域、不解析文件文本。
+**`导入(路径, 偏移: 1)`** —— 用 `#include` 引入另一个 `.typ` 文件,并整体增加其标题层级(默认 +1)。被引入文件自行 `#import` 所需函数,本函数不注入作用域、不解析文件文本。
 
-Includes another `.typ` file via `#include` and deepens its heading levels with `set heading(offset:)` (default +1). The file does its own `#import`; this helper injects no scope and parses no text.
+*Includes another `.typ` file via `#include` and deepens its heading levels with `set heading(offset:)` (default +1). The file does its own `#import`; this helper injects no scope and parses no text.*
 
 - `路径` —— 被引入文件的路径。模板版本以仓库根(`--root`)为基准,如 `"文档/内容/怪动植物.typ"`。
 
-  Path of the file to include, relative to the repo root (`--root`).
+  *Path of the file to include, relative to the repo root (`--root`).*
 
 - `偏移` —— 标题层级增量(必须非负,即只加深),默认 `1`。因此被引入文件应写得比最终层级浅一档(目标为 `===` 则源文件写 `==`)。
 
-  Heading-level increment (non-negative), default `1`. Include files should be written one level shallower than the target.
+  *Heading-level increment (non-negative), default `1`. Include files should be written one level shallower than the target.*
 
 ```typst
 #导入("文档/内容/怪动植物.typ")            // 全部标题层级 +1
@@ -316,7 +292,7 @@ Includes another `.typ` file via `#include` and deepens its heading levels with 
 All six heading levels are styled differently:
 
 | 级别 Level | 样式 Style |
-|------|------|
+|:---|:---|
 | `=` 一级 L1 | 小型大写、深红、1.5em · small caps, dark red, 1.5em |
 | `==` 二级 L2 | 小型大写、深红、黄色下划线 · small caps, dark red, yellow underline |
 | `===` 三级 L3 | 小型大写、深红、1.3em · small caps, dark red, 1.3em |
@@ -458,7 +434,7 @@ Inspired by [typst-dnd5e](https://github.com/coljac/typst-dnd5e) and the [DND La
 贡献者 / Contributors:
 
 - [@neuromancer89](https://github.com/neuromancer89) —— `bg` 参数及本地化系统(`lang` 参数、`languages/*.toml`)。
-  The `bg` parameter and the localization system.
+  *The `bg` parameter and the localization system.*
 
 ## 许可 · License
 

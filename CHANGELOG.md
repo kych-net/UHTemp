@@ -19,6 +19,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [1.1.1] - 2026-10-23
+
+### Added
+
+- README 新增配套项目模板 [UHEg](https://github.com/kych-net/UHEg) 的介绍与链接。
+
+### Changed
+
+- README 与模板脚手架中的 `@preview/underhell` 版本引用更新至 `1.1.1`。
+
 ## [1.1.0] - 2026-10-23
 
 ### Added
@@ -52,6 +62,7 @@ to the corresponding tag on GitHub, or the diff
 in comparison to the previous release
 -->
 
-[Unreleased]: https://github.com/kych-net/UHTemp/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/kych-net/UHTemp/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/kych-net/UHTemp/releases/tag/v1.1.1
 [1.1.0]: https://github.com/kych-net/UHTemp/releases/tag/v1.1.0
 [1.0.0]: https://github.com/kych-net/UHTemp/releases/tag/v1.0.0
